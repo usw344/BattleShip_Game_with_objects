@@ -31,12 +31,15 @@ void draw() {
   
   ship1.checkToSeeIfClicked();
   ship1.move();
+  ship1.snap();
   
   ship2.checkToSeeIfClicked();
   ship2.move();
+  ship2.snap();
   
   ship3.checkToSeeIfClicked();
   ship3.move();
+  ship3.snap();
   
 }
 
@@ -68,8 +71,10 @@ void displayEnemyBoard() {
 void displayBoard() {
   for (int x = 0; x < cols-10; x++) {
     for (int y = rows/2; y < rows; y++) {
+      //println(" the value Of x is: " + x +  " the Value of y is: " + y);
       if (y == lengthOfBoard/2) {
         fill(0);
+        
       }
       else {
         fill(255);
