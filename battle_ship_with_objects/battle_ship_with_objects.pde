@@ -34,12 +34,12 @@ void draw() {
   ship1.snap();
   
   ship2.checkToSeeIfClicked();
-  ship2.move();
-  ship2.snap();
+ // ship2.move();
+ // ship2.snap();
   
   ship3.checkToSeeIfClicked();
-  ship3.move();
-  ship3.snap();
+  //ship3.move();
+  //ship3.snap();
   
 }
 
@@ -49,13 +49,13 @@ void startBoardValues() {
   theBoard = new int [cols][rows];
   theEnemyBoard = new int [cols] [rows];
   squareWidth = width/cols;
-  squareHeight = height/rows;
+  squareHeight =height/rows;
   
   
 }
 void displayEnemyBoard() {
   for (int x = 0; x < cols-10; x++) {
-    for (int y = 0; y < rows/2; y++) {
+    for (int y = 0; y < rows/2 ; y++) {
       if (y == lengthOfBoard/2) {
         fill(0);
       }
@@ -70,7 +70,7 @@ void displayEnemyBoard() {
 }
 void displayBoard() {
   for (int x = 0; x < cols-10; x++) {
-    for (int y = rows/2; y < rows; y++) {
+    for (int y = rows/2; y < rows + 1; y++) {
       //println(" the value Of x is: " + x +  " the Value of y is: " + y);
       if (y == lengthOfBoard/2) {
         fill(0);

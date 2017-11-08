@@ -1,3 +1,9 @@
+// to snap make sure, that you divid your shipx by the size of the square. then snap the x cord of the ship that the closest in the array value. 
+
+
+
+
+
 class Ship {
   // data 
   float x, y, placeForOtherSqaureX, halfSize, placeForOtherSqaureY;
@@ -40,21 +46,16 @@ class Ship {
   }
 
   void snap() {
-    if (x < width/2) {
-      for (int i = 0; i < cols-10; i++) { // my x,
-        for (int j = rows/2; j < rows; j++) { // my y
-          float percentOfX = ((i * sizeOfSide)/(x - halfSize)) * 100;
-          float percentOfY = ((j * sizeOfSide)/(y - halfSize)) * 100;
-           println(percentOfX,percentOfY);
-          if (isMovingAllowed && shipMoving) {
-            
-            if (percentOfX >50 && percentOfY > 50) {
-               isMovingAllowed = false;
-            }          
-        }
-        }
-      }
-    }
-  }
-  
+    int shipXcord, shipYcord;
+    shipXcord = int(x - sizeOfSide/2);
+    shipYcord = int(y - sizeOfSide/2);
+    
+    shipXcord = int(shipXcord/sizeOfSide) + 2;
+    shipYcord = int(shipYcord / sizeOfSide);
+    println(shipXcord,shipYcord);
+    
+    
+      
+
+}
 }
