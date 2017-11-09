@@ -1,4 +1,4 @@
-int[][] theBoard, theEnemyBoard;
+int[][] theBoard, theEnemyBoard,theFinalBoard;
 int rows, cols;
 int state, lengthOfBoard;
 int squareHeight,squareWidth;
@@ -34,19 +34,19 @@ void draw() {
   ship1.snap();
   
   ship2.checkToSeeIfClicked();
- // ship2.move();
- // ship2.snap();
+  ship2.move();
+  ship2.snap();
   
   ship3.checkToSeeIfClicked();
-  //ship3.move();
-  //ship3.snap();
-  
+  ship3.move();
+  ship3.snap();
+  displayFinalShips();
 }
 
 
 
 void startBoardValues() {
-  theBoard = new int [cols][rows];
+  theBoard = new int [cols*2][rows*2];
   theEnemyBoard = new int [cols] [rows];
   squareWidth = width/cols;
   squareHeight =height/rows;
@@ -69,7 +69,7 @@ void displayEnemyBoard() {
   }
 }
 void displayBoard() {
-  for (int x = 0; x < cols-10; x++) {
+  for (int x = 1; x < cols+1-10; x++) {
     for (int y = rows/2; y < rows + 1; y++) {
       //println(" the value Of x is: " + x +  " the Value of y is: " + y);
       if (y == lengthOfBoard/2) {
@@ -83,4 +83,14 @@ void displayBoard() {
     }
   
   }
+}
+void displayFinalShips() {
+    for (int x = 1; x < cols; x++) {
+      for (int y = 1; y < rows ; y++) {
+        if (theBoard[x][y] == 1) {
+          fill(0);
+          rect(x*squareWidth,y*squareHeight,squareWidth,squareHeight);
+        }
+      }
+    }
 }
