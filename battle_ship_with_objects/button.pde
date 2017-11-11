@@ -5,7 +5,8 @@ class Button {
   Button() {
     isButtonClicked = false;
   }
-  void displayButton(int x,y,h,w) {
+  void displayButton(int x, int y, int w,int h) {
+    rectMode(CENTER);
     buttonX = x;
     buttonY = y;
     buttonHeight = h;
@@ -18,22 +19,31 @@ class Button {
     }
     rect(buttonX,buttonY,buttonWidth,buttonHeight);  
 }
-  void isTheButtonBeingClicked(int state) {
-    if (mouseX > buttonX && mouseX < buttonX + buttonWidth && mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+  void isTheButtonBeingClicked(int objState) {
+    float halftheButtonSizeX =  buttonWidth/2;
+    float halftheButtonSizeY = buttonHeight/2;
+    if (mouseX > buttonX - halftheButtonSizeX && mouseX < buttonX - halftheButtonSizeX+ buttonWidth && mouseY > buttonY - halftheButtonSizeY && mouseY < buttonY - halftheButtonSizeY + buttonHeight) {
       isButtonClicked = true;
-      if (mousePressed == true) {
-        doTheAction(int TheState);
+      if (mousePressed) {
+        doTheAction(objState);
       }
     }
-  
+    else {
+      isButtonClicked = false;
+    }
   
   }
 
   void doTheAction(int stateVarNum) {
+    state = stateVarNum;
     
   }
 
-
+  void theText(String blank) {
+    textSize(buttonWidth/6);
+    fill(255);
+    text(blank,buttonX - buttonWidth/4,buttonY);
+  }
 
 
 

@@ -52,7 +52,7 @@ class Ship {
     if (x < width/2) {
       shipXcord = int(shipXcord/sizeOfSide) + 2;
       shipYcord = int(shipYcord / sizeOfSide);
-      println(shipXcord,shipYcord);
+      //println(shipXcord,shipYcord);
       theBoard[shipXcord-1][shipYcord+1] = 1;
       theBoard[shipXcord-1][shipYcord+2] = 1;
   }
