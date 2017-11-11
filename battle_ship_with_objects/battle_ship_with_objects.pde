@@ -19,6 +19,7 @@ void setup() {
   size(600, 600);
   state = 0; // default being the start screen
   
+
   lengthOfBoard = 20;
   
   newObjects();// starting all my objects
@@ -26,6 +27,9 @@ void setup() {
 
   rows = lengthOfBoard;
   cols = lengthOfBoard;
+  
+  startBoardValues(); // these are setting up the board and values that go with it. 
+
 }
 
 void draw() {
@@ -38,17 +42,18 @@ void draw() {
   }
 
   if (state == 1) { // ) where the ships are setup;
-    startBoardValues(); // these are setting up the board and values that go with it. 
     displayBoard();
 
     readyButtonHandler(); // putting all my object code into functions. 
+    theBoard = new int [cols*2][rows*2];
     shipHandler();
 
     displayFinalShips(); // showing real time where all the ships are
+    letTheGameBegin();
   }
   
   if (state == 2) { 
-    letTheGameBegin(); // starting my second array to handel the final placements of the ships.
+    //letTheGameBegin(); // starting my second array to handel the final placements of the ships.
   }
 
 
@@ -66,10 +71,17 @@ void draw() {
 ///////  misc
 
 void letTheGameBegin() {
-  println("true");
-  theBoard = theFinalBoard;
+  for (int i = 0; i < cols; i ++) {
+    for (int j = 0; j < rows; j++) {
+      println("true");
+      theBoard[i][j] = theFinalBoard[i][j];
+    }
   
-  state = 3;
+  
+  }
+  
+  
+  //state = 3;
 }
 
 
@@ -85,7 +97,7 @@ void newObjects() {
 }
 void readyButtonHandler() {
   readyButton.displayButton(0 + width/5, 0 + height/4, 200, 100);
-  readyButton.isTheButtonBeingClicked(2);
+  readyButton.isTheButtonBeingClicked(3);
   readyButton.theText("Battle!!");
 }
 
@@ -161,10 +173,9 @@ void displayFinalShips() {
 
 void drawChangingBoard() {
 
-  for (int x = 1; x < cols; x++) {
-    for (int y = 1; y < rows; y++) {
-     // println(theFinalBoard[x][y]);
-      if (theBoard[x][y] == 1) {
+  for (int x = 1; x < cols + 1 -10; x++) {
+    for (int y = rows/2; y < rows ; y++) {
+      if (theFinalBoard[x][y] == 1) {
         fill(0);
         rect(x*squareWidth, y*squareHeight, squareWidth, squareHeight);
       }
