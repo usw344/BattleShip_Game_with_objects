@@ -19,10 +19,16 @@ void setup() {
   size(600, 600);
   state = 0; // default being the start screen
   
+  newObjects();// starting all my objects
+
+  ship1.assigneValues(width - width/4,height/2);
+  ship2.assigneValues(width - width/4 + width/20, height/4);
+  ship3.assigneValues(width - width/4 -  width/20, height /3);
+
+
 
   lengthOfBoard = 20;
   
-  newObjects();// starting all my objects
   
 
   rows = lengthOfBoard;
@@ -45,43 +51,18 @@ void draw() {
     displayBoard();
 
     readyButtonHandler(); // putting all my object code into functions. 
-    theBoard = new int [cols*2][rows*2];
+    theBoard = new int [cols*2][rows*2]; // refreshes the board every frame during prep per. 
     shipHandler();
 
     displayFinalShips(); // showing real time where all the ships are
-    letTheGameBegin();
   }
   
-  if (state == 2) { 
-    //letTheGameBegin(); // starting my second array to handel the final placements of the ships.
-  }
-
-
-  if (state == 3) { // the main game code.
+  if (state == 2) { // the main game code.
     drawChangingBoard();
 
 }
 
 
-}
-
-
-
-
-///////  misc
-
-void letTheGameBegin() {
-  for (int i = 0; i < cols; i ++) {
-    for (int j = 0; j < rows; j++) {
-      println("true");
-      theBoard[i][j] = theFinalBoard[i][j];
-    }
-  
-  
-  }
-  
-  
-  //state = 3;
 }
 
 
@@ -97,7 +78,7 @@ void newObjects() {
 }
 void readyButtonHandler() {
   readyButton.displayButton(0 + width/5, 0 + height/4, 200, 100);
-  readyButton.isTheButtonBeingClicked(3);
+  readyButton.isTheButtonBeingClicked(2);
   readyButton.theText("Battle!!");
 }
 
@@ -106,6 +87,7 @@ void shipHandler() {
   ship1.displayShip();
   ship2.displayShip();
   ship3.displayShip();
+  
 
 
   ship1.checkToSeeIfClicked();
