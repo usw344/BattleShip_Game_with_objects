@@ -24,7 +24,7 @@ void setup() {
 
   lengthOfBoard = 20;
   
-   playerTurn = false;
+  playerTurn = true;
  
   rows = lengthOfBoard;
   cols = lengthOfBoard;
@@ -114,7 +114,7 @@ void shipHandler() {
 
 void startBoardValues() {
   theBoard = new int [cols*2][rows*2];
-  theEnemyBoard = new int [cols] [rows];
+  theEnemyBoard = new int [cols*2] [rows*2];
   theFinalBoard = new int [cols*2][rows*2];
   squareWidth = width/cols;
   squareHeight =height/rows;
@@ -122,24 +122,7 @@ void startBoardValues() {
 
 
 ///////// all Code that concerns board drawing
-void displayEnemyBoard() {
-  for (int x = 1; x < cols+1-10; x++) {
-    for (int y = 1; y < rows/2; y++) {
-      //println(theEnemyBoard[x][y]);
-      if (y == lengthOfBoard/2) {
-        fill(0);
-      } else {
-        fill(0,0,255);  // this is the base color of blue for the enemy squares
-  }
 
-      if(theEnemyBoard[x][y] == 2) {
-        fill(100,100,243);     
-      
-    }
-      rect(x*squareWidth, y*squareHeight, squareWidth, squareHeight);
-    }
-  }
-}
 void displayBoard() {
   for (int x = 1; x < cols+1-10; x++) {
     for (int y = rows/2; y < rows; y++) {
@@ -194,30 +177,26 @@ void drawChangingBoard() {
 
 void playerShots() {
   if (playerTurn && mousePressed) {
-    xChoice = int(mouseX - squareHeight/2);
-    xChoice = int(mouseY - squareHeight/2);
     
-    xChoice = int(xChoice/squareHeight) + 2;
-    yChoice = int(yChoice /squareHeight);
+    xChoice = int(mouseX/squareHeight);
+    yChoice = int(mouseY /squareHeight);
   
   if (xChoice < 11 && yChoice < rows/2) {
-        for (int x = 1; x < cols+1-10; x++) {
-          for (int y = rows/2; y < rows; y++) {
-            println(theEnemyBoard[x][y]);
-            if(theEnemyBoard[xChoice][yChoice] == 0) {
-              theEnemyBoard[xChoice][yChoice] = 2; // if you are hitting the enemy ship
-            }
-            else if(theEnemyBoard[xChoice][yChoice] == 1) {
-              theEnemyBoard[xChoice][yChoice] = 2;
-            }
-            else if(theEnemyBoard[xChoice][yChoice] == 2) {
-              playerTurn = true;
-            }
-            playerTurn = false;
+    if(theEnemyBoard[xChoice][yChoice] == 0) {
+      println("true");
+      theEnemyBoard[xChoice][yChoice] = 2; // if you are hitting the enemy ship
+ }
+     else if(theEnemyBoard[xChoice][yChoice] == 1) {
+       theEnemyBoard[xChoice][yChoice] = 2;
+}
+     else if(theEnemyBoard[xChoice-1][yChoice+1] == 2) {
+       playerTurn = true;
+  }
+     playerTurn = false;
+     println("false");
       }
         }
-      } 
-  }
+      
 }
 
 
@@ -243,6 +222,28 @@ void theAI() {
     }
   }
 }
+
+void displayEnemyBoard() {
+  for (int x = 1; x < cols+1-10; x++) {
+    for (int y = 1; y < rows/2; y++) {
+      if (y == lengthOfBoard/2) {
+        fill(0);
+      } else {
+        fill(255);  // this is the base color of blue for the enemy squares
+  }
+
+      if(theEnemyBoard[x][y] == 2) {
+        fill(100,100,243);     
+      
+    }
+      rect(x*squareWidth, y*squareHeight, squareWidth, squareHeight);
+    }
+  }
+}
+
+
+
+
 
 void keyPressed() {
   if (key == 'g') {
