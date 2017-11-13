@@ -37,7 +37,6 @@ class Ship {
     if ((mouseY > y - halfSize && mouseY < y- halfSize + sizeOfSide*2) && (mouseX > x- halfSize && mouseX < x - halfSize + sizeOfSide )) { 
       if (mousePressed && (mouseButton == LEFT) && isMovingAllowed) {
         shipMoving = true;
-        println("true");
       } else {
         shipMoving = false;
       }
