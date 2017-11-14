@@ -24,10 +24,18 @@ void setup() {
   cols = lengthOfBoard;
 
   lengthOfBoard = 20;
+<<<<<<< HEAD
 
   startBoardValues(); // these are setting up the board and values that go with it.
 
   playerTurn = true;
+=======
+  
+   playerTurn = false;
+ 
+  rows = lengthOfBoard;
+  cols = lengthOfBoard;
+>>>>>>> parent of be10268... got my click function to work
   
   
   newObjects();// starting all my objects
@@ -119,7 +127,7 @@ void shipHandler() {
 
 void startBoardValues() {
   theBoard = new int [cols*2][rows*2];
-  theEnemyBoard = new int [cols*2] [rows*2];
+  theEnemyBoard = new int [cols] [rows];
   theFinalBoard = new int [cols*2][rows*2];
   squareWidth = width/lengthOfBoard;
   squareHeight =height/lengthOfBoard;
@@ -127,7 +135,24 @@ void startBoardValues() {
 
 
 ///////// all Code that concerns board drawing
+void displayEnemyBoard() {
+  for (int x = 1; x < cols+1-10; x++) {
+    for (int y = 1; y < rows/2; y++) {
+      //println(theEnemyBoard[x][y]);
+      if (y == lengthOfBoard/2) {
+        fill(0);
+      } else {
+        fill(0,0,255);  // this is the base color of blue for the enemy squares
+  }
 
+      if(theEnemyBoard[x][y] == 2) {
+        fill(100,100,243);     
+      
+    }
+      rect(x*squareWidth, y*squareHeight, squareWidth, squareHeight);
+    }
+  }
+}
 void displayBoard() {
   for (int x = 1; x < cols+1-10; x++) {
     for (int y = rows/2; y < rows; y++) {
@@ -185,6 +210,7 @@ void playerShots() {
   yChoice = int(mouseY /squareHeight) + 1;
 
   if (playerTurn && mousePressed) {
+<<<<<<< HEAD
     if (xChoice < 11 && yChoice < rows/2) {
       if (theEnemyBoard[xChoice][yChoice] == 0) {
         println("true");
@@ -197,6 +223,31 @@ void playerShots() {
       playerTurn = false;
       println("false");
     }
+=======
+    xChoice = int(mouseX - squareHeight/2);
+    xChoice = int(mouseY - squareHeight/2);
+    
+    xChoice = int(xChoice/squareHeight) + 2;
+    yChoice = int(yChoice /squareHeight);
+  
+  if (xChoice < 11 && yChoice < rows/2) {
+        for (int x = 1; x < cols+1-10; x++) {
+          for (int y = rows/2; y < rows; y++) {
+            println(theEnemyBoard[x][y]);
+            if(theEnemyBoard[xChoice][yChoice] == 0) {
+              theEnemyBoard[xChoice][yChoice] = 2; // if you are hitting the enemy ship
+            }
+            else if(theEnemyBoard[xChoice][yChoice] == 1) {
+              theEnemyBoard[xChoice][yChoice] = 2;
+            }
+            else if(theEnemyBoard[xChoice][yChoice] == 2) {
+              playerTurn = true;
+            }
+            playerTurn = false;
+      }
+        }
+      } 
+>>>>>>> parent of be10268... got my click function to work
   }
 }
 
@@ -224,6 +275,7 @@ void theAI() {
   }
 }
 
+<<<<<<< HEAD
 void displayEnemyBoard() {
   for (int x = 1; x < cols+1-10; x++) {
     for (int y = 1; y < rows/2; y++) {
@@ -247,6 +299,8 @@ void displayEnemyBoard() {
 
 
 
+=======
+>>>>>>> parent of be10268... got my click function to work
 void keyPressed() {
   if (key == 'g') {
     playerTurn = false;
